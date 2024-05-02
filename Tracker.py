@@ -18,7 +18,7 @@ last_updated_date = "Mar 21, 2024"
 bigsample = soup.find_all('strong',class_ = '')
 cbseresults = soup2.find_all('body',class_ = "")
 
-
+'''
 if cbseresults[0].text.strip() == "Some error occurred, please try again after sometime.":
     trigger1 = False
 else:
@@ -38,16 +38,16 @@ for data in bigsample:
 if datefound == False:
     trigger2 = False
     print("(Year-Error): - The year is not 2024")
+'''
 
-print(trigger2)
-print(trigger1)
-
-
+trigger1 , trigger2 = False, True
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        email = request.form['email']
+        print("Email:", email)
+        return redirect(url_for('home'))  # Redirect to the start page
     return render_template('index.html', trigger1=trigger1, trigger2=trigger2)
 
 if __name__ == "__main__":
     app.run(debug=True, port=1281)
-
-
