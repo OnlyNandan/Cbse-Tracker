@@ -13,7 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #f8f8f8;
         }
 
@@ -76,14 +76,14 @@
 
         /* Trigger 1 Box */
         .trigger-box-1 {
-            background-color: {% if trigger1 %} #FF6961; {% else %} #90EE90; {% endif %};
+            background-color: {% if trigger1 %} #E76D6D; {% else %} #67A97B; {% endif %};
             top: 20px;
             right: 20px;
         }
 
         /* Trigger 2 Box */
         .trigger-box-2 {
-            background-color: {% if trigger2 %} #FF6961; {% else %} #90EE90; {% endif %};
+            background-color: {% if trigger2 %} #E76D6D; {% else %} #67A97B; {% endif %};
             top: 80px;
             right: 20px;
         }
@@ -107,7 +107,7 @@
         .email-input input[type="text"] {
             padding: 10px 15px;
             border-radius: 20px;
-            border: 1px solid #000000;
+            border: 0px solid #000000;
             font-size: 16px;
             outline: none;
         }
@@ -115,7 +115,7 @@
         .email-input input[type="submit"] {
             padding: 10px 20px;
             border-radius: 20px;
-            border: 1px solid #000000;
+            border: 0px solid #000000;
             background-color: #FF6961;
             color: fffff2;
             font-size: 16px;
@@ -134,6 +134,31 @@
             text-align: center;
             margin-bottom: 10px;
         }
+
+        /* Open Source Link */
+        .open-source-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+        }
+
+        .open-source-link {
+            font-size: 14px;
+            color: #333333;
+            text-align: center;
+        }
+
+        .open-source-link a {
+            color: #333333;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .open-source-link a:hover {
+            color: #FF6961;
+        }
     </style>
 </head>
 <body>
@@ -147,6 +172,10 @@
         {% if trigger1 and trigger2 %}
             <strong>Results are available for 2024</strong>
             <p><a href ="https://cbseresults.nic.in/2024">Check</a> </p>
+        {% elif trigger2 %}
+            <p><a href = "https://results.cbse.nic.in/">CBSE.Nic has been updated</a></p>
+        {% elif trigger1 %}
+            <p><a href = "https://cbseresults.nic.in/2024">Results page has been updated</a></p>
         {% else %}
             <p>No new updates.</p>
         {% endif %}
@@ -155,9 +184,16 @@
         <div class="email-input">
             <p class="email-subheader">If you want to know as soon its updated</p>
             <form action="#">
-                <input type="text" placeholder="Enter Your Email">
+                <input type="text" name="email" placeholder="Enter Your Email">
                 <input type="submit" value="Enter">
             </form>
+        </div>
+    </div>
+
+    <!-- Open Source Link Container -->
+    <div class="open-source-container">
+        <div class="open-source-link">
+            <p><a href="https://github.com/OnlyNandan/Cbse-Tracker">This project is open source.</a></p>
         </div>
     </div>
 </body>
