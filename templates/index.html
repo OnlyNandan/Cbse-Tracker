@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Results Checker</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%; /* Ensure container spans the entire width */
+        }
+
+        /* Header Styles */
+        h1 {
+            font-size: 36px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 0; /* Adjust the top margin to separate it from the trigger boxes */
+        }
+
+        /* Content Styles */
+        p {
+            font-size: 18px;
+            color: #555555;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Flashing Animation */
+        @keyframes flash {
+            0% { background-color: #EC8F85; }
+            50% { background-color: #C5C6A7; }
+            100% { background-color: #EC8F85; }
+        }
+
+        @keyframes flashcalm {
+            0% { background-color: #BCC9AE; }
+            25% { background-color: #919F82; }
+            50% { background-color: #819070; }
+            100% { background-color: #BCC9AE; }
+        }
+
+        /* Trigger Boxes */
+        .trigger-box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .trigger-box a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Trigger 1 Box */
+        .trigger-box-1 {
+            background-color: {% if trigger1 %} #FF6961; {% else %} #90EE90; {% endif %};
+            top: 20px;
+            right: 20px;
+        }
+
+        /* Trigger 2 Box */
+        .trigger-box-2 {
+            background-color: {% if trigger2 %} #FF6961; {% else %} #90EE90; {% endif %};
+            top: 80px;
+            right: 20px;
+        }
+
+        /* Apply Animation */
+        {% if trigger1 or trigger2 %}
+            body {
+                animation: flash 3s infinite;
+            }
+        {% else %}
+            body {
+                animation: flashcalm 7s infinite;
+            }
+        {% endif %}
+
+        /* Email Input Section */
+        .email-input {
+            margin-top: 20px; /* Adjust the top margin to separate it from the main header */
+        }
+
+        .email-input input[type="text"] {
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .email-input input[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            background-color: #FF6961;
+            color: fffff2;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-input input[type="submit"]:hover {
+            background-color: #E64A41;
+        }
+
+        /* Email Input Subheader */
+        .email-subheader {
+            font-size: 16px;
+            color: #fffff2;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CBSE Results Checker</h1>
+
+        <!-- Trigger Boxes -->
+        <div class="trigger-box trigger-box-1"><a href="https://cbseresults.nic.in/2024">{{1}}</a></div>
+        <div class="trigger-box trigger-box-2"><a href="https://results.cbse.nic.in/">{{2}}</a></div>
+
+        {% if trigger1 and trigger2 %}
+            <strong>Results are available for 2024</strong>
+            <p><a href ="https://cbseresults.nic.in/2024">Check</a> </p>
+        {% else %}
+            <p>No new updates.</p>
+        {% endif %}
+
+        <!-- Email Input Section -->
+        <div class="email-input">
+            <p class="email-subheader">If you want to know as soon its updated</p>
+            <form action="#">
+                <input type="text" placeholder="Enter Your Email">
+                <input type="submit" value="Enter">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
